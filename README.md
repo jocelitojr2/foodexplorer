@@ -1,4 +1,4 @@
-# Template React
+# Foodexplorer
 ## Dependências Instaladas
 
 * [Styled Components (v6.1.8)](https://styled-components.com/docs/basics#installation)
