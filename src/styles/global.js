@@ -45,4 +45,13 @@ export default createGlobalStyle`
   button:hover, a:hover {
     filter: brightness(0.9);
   }
+
+  input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+  }
+  input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
 `;

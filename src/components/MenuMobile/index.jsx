@@ -11,7 +11,7 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
   return (
     <Container $isVisible={menuIsVisible}>
       <div className='header'>
-        <PiX size={45} onClick={() => setMenuIsVisible(false)} />
+        <PiX size={32} onClick={() => setMenuIsVisible(false)} />
         <span>Menu</span>
       </div>
       <nav>
@@ -21,10 +21,7 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
         />
         <ul>
           <li>
-            <a href="#">teste 2</a>
-          </li>
-          <li>
-            <a href="#">teste 3</a>
+            <a href="#">Sair</a>
           </li>
         </ul>
         

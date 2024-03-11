@@ -16,7 +16,7 @@ export function Header() {
         setMenuIsVisible={setMenuIsVisible}
       />
       
-      <PiListLight size={42} onClick={() => setMenuIsVisible(true)} />
+      <PiListLight size={32} onClick={() => setMenuIsVisible(true)} />
 
       <a href="/" className="logo">
         <img src={favIcon} alt="Logo foodexplorer" />
@@ -26,7 +26,7 @@ export function Header() {
       </a>
 
       <a href="#" className="cart">
-        <PiReceipt size={42} />
+        <PiReceipt size={32} />
         <span>1</span>
       </a>
 

@@ -23,9 +23,6 @@ export const Container = styled.div`
   transform: translateY(50px);
 
   > svg {
-    /* position: absolute;
-    top: 2rem;
-    left: 2rem; */
     transform: rotate(45deg);
     transition: .7s;
   }
@@ -38,7 +35,7 @@ export const Container = styled.div`
     transition: .7s;
     width: 100%;
     height: 100%;
-    padding: 0 28px;
+    padding: 36px 28px 13px 28px;
 
     ul {
       display: flex;
@@ -47,6 +44,12 @@ export const Container = styled.div`
 
       li {
         padding: 10px;
+
+        a {
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: ${({theme}) => theme.COLORS.LIGHT_300};
+        }
       }
     }
 
@@ -73,14 +76,14 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 105px;
+    height: calc(105px + 31.6px);
     gap: 1rem;
     padding: 0 28px;
 
     background: ${({ theme }) => theme.COLORS.DARK_700};
 
     span {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
 `;
