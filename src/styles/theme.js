@@ -19,7 +19,7 @@ export default {
     DARK_900: "#0D1D25",
     DARK_1000: "#192227",
 
-    GRADIENTS_100: "linear-gradient(90deg, rgba(25,34,39,0.6727065826330532) 27,25%, rgba(0,10,15,1) 100%)",
+    GRADIENTS_100: "linear-gradient(90deg, rgba(0,10,15,0.5214460784313726) 27.25%, rgba(0,10,15,1) 100%)",
     GRADIENTS_200: "linear-gradient(180deg, rgba(9,30,38,1) 100%, rgba(0,19,28,1) 100%)",
 
     TOMATO_100: "#750310",
