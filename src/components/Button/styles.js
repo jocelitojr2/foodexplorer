@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
-  height: 3rem;
+  height: 48px;
   border: 0;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
@@ -18,6 +21,10 @@ export const Container = styled.button`
 
   &:disabled {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+  }
+
+  svg {
+    margin-right: 8px;
   }
 
 `;
