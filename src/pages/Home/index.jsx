@@ -1,17 +1,19 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import { PiCaretRight, PiHeartBold } from "react-icons/pi";
 import 'swiper/css';
-import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 import { Container, Content, Banner, CardsContent } from './styles';
 
 import BannerDecoration from "../../assets/banner-decoration.png"
+import Salada from "../../assets/Mask group.png"
 
-import { Pagination } from 'swiper/modules';
-import { Header } from '../../components/Header';
-//import { Input } from '../../components/Input';
 import { InputNumber } from '../../components/InputNumber';
-//import { Button } from '../../components/Button';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+import { Button } from '../../components/Button';
 
 export function Home() {
   return (
@@ -32,11 +34,161 @@ export function Home() {
           <Swiper
             slidesPerView={'auto'}
             spaceBetween={16}
-            modules={[Pagination]}
+            navigation={true} 
+            modules={[Navigation]}
             className="mySwiper"
           >
             <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
+              <span>R$ 49,97</span>
+
+              <div className='dish-actions'>
+                <InputNumber/>
+                <Button title="Incluir"/>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
+              <span>R$ 49,97</span>
+
+              <div className='dish-actions'>
+                <InputNumber/>
+                <Button title="Incluir"/>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
+              <span>R$ 49,97</span>
+
+              <div className='dish-actions'>
+                <InputNumber/>
+                <Button title="Incluir"/>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
+              <span>R$ 49,97</span>
+
+              <div className='dish-actions'>
+                <InputNumber/>
+                <Button title="Incluir"/>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
+              <span>R$ 49,97</span>
+
+              <div className='dish-actions'>
+                <InputNumber/>
+                <Button title="Incluir"/>
+              </div>
+            </SwiperSlide>
+            
+          </Swiper>
+        </CardsContent>
+
+        <CardsContent>
+          <h2>Pratos principais</h2>
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            navigation={true} 
+            modules={[Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <span>R$ 49,97</span>
               <InputNumber/>
+              <Button title="Incluir"/>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <span>R$ 49,97</span>
+              <InputNumber/>
+              <Button title="Incluir"/>
+            </SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
+            <SwiperSlide>Slide 5</SwiperSlide>
+            <SwiperSlide>Slide 6</SwiperSlide>
+            <SwiperSlide>Slide 7</SwiperSlide>
+            <SwiperSlide>Slide 8</SwiperSlide>
+            <SwiperSlide>Slide 9</SwiperSlide>
+          </Swiper>
+        </CardsContent>
+
+        <CardsContent>
+          <h2>Bebidas principais</h2>
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            navigation={true} 
+            modules={[Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <span>R$ 49,97</span>
+              <InputNumber/>
+              <Button title="Incluir"/>
+            </SwiperSlide>
+            <SwiperSlide>
+              <PiHeartBold size={24} className='heart'/>
+              <img src={Salada} alt="Imagem do prato" />
+              <a href="#">
+                Salada Revanello
+                <PiCaretRight />
+              </a>
+              <span>R$ 49,97</span>
+              <InputNumber/>
+              <Button title="Incluir"/>
             </SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
             <SwiperSlide>Slide 3</SwiperSlide>
@@ -50,6 +202,8 @@ export function Home() {
         </CardsContent>
 
       </Content>
+
+      <Footer />
     </Container>
   )
 }

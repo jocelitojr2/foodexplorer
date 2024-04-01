@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100px;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -24,13 +24,7 @@ export const Container = styled.div`
 
   > svg {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    margin-left: 14px;
     cursor: pointer;
-
-    &:last-child {
-      margin-right: 14px;
-      margin-left: 0;
-    }
 
     &:hover {
       color: ${({ theme }) => theme.COLORS.LIGHT_100};

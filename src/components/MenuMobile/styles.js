@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   position: absolute;
@@ -10,7 +11,7 @@ export const Container = styled.div`
   right: 0;
   bottom: 0;
 
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
 
@@ -85,5 +86,9 @@ export const Container = styled.div`
     span {
       font-size: 1.5rem;
     }
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    display: block;
   }
 `;

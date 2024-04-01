@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container } from "./styles";
 
-import { PiPlusLight, PiMinus  } from "react-icons/pi";
+import { PiPlusBold , PiMinusBold  } from "react-icons/pi";
 
 export function InputNumber() {
   const [counter, setCounter] = useState(0);
@@ -32,14 +32,14 @@ export function InputNumber() {
   
   return (
     <Container>
-      <PiPlusLight size={32} onClick={() => handleIncrement()} />
+      <PiMinusBold size={55} onClick={() => handleDecrement()} />
       <input 
         type="number" 
         placeholder="00" 
         value={formatNumber(counter)}
         onChange={handleChange}
       />
-      <PiMinus size={32} onClick={() => handleDecrement()} />
+      <PiPlusBold  size={55} onClick={() => handleIncrement()} />
     </Container>
   )
 }
