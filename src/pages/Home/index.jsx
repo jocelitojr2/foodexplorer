@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { PiCaretRight, PiHeartBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -41,10 +42,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
@@ -56,10 +57,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
@@ -71,10 +72,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
@@ -86,10 +87,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
@@ -101,10 +102,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
@@ -129,10 +130,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <span>R$ 49,97</span>
               <InputNumber/>
               <Button title="Incluir"/>
@@ -140,10 +141,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <span>R$ 49,97</span>
               <InputNumber/>
               <Button title="Incluir"/>
@@ -171,10 +172,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <span>R$ 49,97</span>
               <InputNumber/>
               <Button title="Incluir"/>
@@ -182,10 +183,10 @@ export function Home() {
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>
               <img src={Salada} alt="Imagem do prato" />
-              <a href="#">
+              <Link to="/details/1">
                 Salada Revanello
                 <PiCaretRight />
-              </a>
+              </Link>
               <span>R$ 49,97</span>
               <InputNumber/>
               <Button title="Incluir"/>

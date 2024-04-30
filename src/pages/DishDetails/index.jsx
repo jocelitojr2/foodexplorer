@@ -1,5 +1,6 @@
 import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { Container, Content, Details } from './styles';
+import { Link } from "react-router-dom";
 
 import Salada from "../../assets/Mask group.png"
 
@@ -7,7 +8,6 @@ import { InputNumber } from '../../components/InputNumber';
 import { Header } from '../../components/Header';
 import { Tag } from '../../components/Tag';
 import { Footer } from '../../components/Footer';
-import { ButtonText } from '../../components/ButtonText';
 import { Button } from '../../components/Button';
 
 export function DishDetails() {
@@ -16,7 +16,10 @@ export function DishDetails() {
       <Header />
 
       <Content>
-        <ButtonText title="voltar" icon={PiCaretLeftBold} className="back-button" />
+        <Link to="/" className="back-button">
+          <PiCaretLeftBold size={16} />
+          Voltar
+        </Link>
 
         <Details>
           <img src={Salada} alt="Imagem decorativa do banner" />

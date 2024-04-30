@@ -1,4 +1,5 @@
 import { Container, Form } from "./styles";
+import { Link } from "react-router-dom";
 
 import favIcon from "../../assets/logo.svg"
 
@@ -36,9 +37,9 @@ export function SignIn() {
         
         <Button title="Entrar" />
 
-        <a href="">
+        <Link to="/register">
           Criar uma conta
-        </a>
+        </Link>
       </Form>
 
     </Container>

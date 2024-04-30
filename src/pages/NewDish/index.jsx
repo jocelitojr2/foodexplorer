@@ -1,11 +1,11 @@
 import { PiCaretLeftBold, PiUploadSimpleBold, PiCaretDownBold } from "react-icons/pi";
 import { Container, Content, Form } from './styles';
+import { Link } from "react-router-dom";
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-import { ButtonText } from '../../components/ButtonText';
 import { Textarea } from '../../components/Textarea';
 import { DishIngredients } from '../../components/DishIngredients';
 export function NewDish() {
@@ -14,7 +14,10 @@ export function NewDish() {
       <Header />
 
       <Content>
-        <ButtonText title="voltar" icon={PiCaretLeftBold} className="back-button" />
+        <Link to="/" className="back-button">
+            <PiCaretLeftBold size={32} />
+            voltar
+        </Link>
 
         <Form>
           <h2>Novo prato</h2>

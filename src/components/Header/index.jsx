@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PiReceipt, PiListLight, PiMagnifyingGlass, PiSignOut } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 import { Container } from "./styles";
 import { MenuMobile } from "../MenuMobile";
@@ -19,12 +20,12 @@ export function Header() {
       
       <PiListLight size={32} onClick={() => setMenuIsVisible(true)} className="icon-menu-mobile" />
 
-      <a href="/" className="logo">
+      <Link to="/" className="logo">
         <img src={favIcon} alt="Logo foodexplorer" />
         <span>
           food explorer
         </span>
-      </a>
+      </Link>
 
       <div className="desktop-search">  
         <Input 
@@ -44,9 +45,9 @@ export function Header() {
           <span>Pedidos(0)</span>
         </a>
         
-        <a href="#">
+        <Link to="/">
           <PiSignOut  size={32} />
-        </a>
+        </Link>
       </div>
 
       
