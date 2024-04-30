@@ -18,8 +18,14 @@ export const Content = styled.main`
   padding: 10px 28px 53px 24px;
 
   .back-button {
+    display: flex;
+    align-items: center;
+    font-family: "Poppins";
     font-size: 16px;
     margin-bottom: 24px;
+    background: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    border: none;
 
     svg {
       width: 16px;
