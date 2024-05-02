@@ -1,10 +1,12 @@
 // Import Swiper React components
+import { PiCaretRight, PiHeartBold, PiPencilSimple  } from "react-icons/pi";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { PiCaretRight, PiHeartBold } from "react-icons/pi";
+import { useAuth } from "../../hooks/auth"
 import { Link } from "react-router-dom";
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 
 import { Container, Content, Banner, CardsContent } from './styles';
 
@@ -17,6 +19,9 @@ import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
 
 export function Home() {
+  const { user } = useAuth();
+  const isAdmin = user.role_id ? true : false;
+
   return (
     <Container>
       <Header />
@@ -40,7 +45,7 @@ export function Home() {
             className="mySwiper"
           >
             <SwiperSlide>
-              <PiHeartBold size={24} className='heart'/>
+              {isAdmin ? <PiPencilSimple size={24} className="pencil"/> : <PiHeartBold size={24} className='heart'/> }
               <img src={Salada} alt="Imagem do prato" />
               <Link to="/details/1">
                 Salada Revanello
@@ -49,10 +54,12 @@ export function Home() {
               <p>Delicioso folheado de pêssego com folhas de hortelã.</p>
               <span>R$ 49,97</span>
 
-              <div className='dish-actions'>
-                <InputNumber/>
-                <Button title="Incluir"/>
-              </div>
+              {!isAdmin &&
+                <div className='dish-actions'>
+                  <InputNumber/>
+                  <Button title="Incluir"/>
+                </div>
+              }
             </SwiperSlide>
             <SwiperSlide>
               <PiHeartBold size={24} className='heart'/>

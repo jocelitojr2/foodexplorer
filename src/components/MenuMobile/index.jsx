@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+import { useAuth } from "../../hooks/auth"
 import { Container } from './styles'
 import { PiX, PiMagnifyingGlass  } from "react-icons/pi";
 
 import { Input } from "../Input"
 export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
+  const { signOut } = useAuth();
 
   useEffect(() => {
     document.body.style.overflowY = menuIsVisible ? 'hidden' : 'auto';
@@ -21,7 +23,7 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
         />
         <ul>
           <li>
-            <a href="#">Sair</a>
+            <a href="#" onClick={signOut}>Sair</a>
           </li>
         </ul>
         

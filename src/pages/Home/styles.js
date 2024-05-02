@@ -126,7 +126,8 @@ export const CardsContent = styled.div`
     height: auto;
     gap: 16px;
 
-    .heart{
+    .heart,
+    .pencil {
       position: absolute;
       right: 16px;
       top: 16px;

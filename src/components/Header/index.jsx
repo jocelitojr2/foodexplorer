@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PiReceipt, PiListLight, PiMagnifyingGlass, PiSignOut } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/auth"
 
 import { Container } from "./styles";
 import { MenuMobile } from "../MenuMobile";
@@ -9,6 +10,9 @@ import { Input } from "../Input"
 import favIcon from "../../assets/logo.svg"
 
 export function Header() {
+  const { signOut, user } = useAuth();
+  const isAdmin = user.role_id ? true : false;
+  
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   return (
@@ -22,9 +26,12 @@ export function Header() {
 
       <Link to="/" className="logo">
         <img src={favIcon} alt="Logo foodexplorer" />
-        <span>
-          food explorer
-        </span>
+        <div className="logo-title">
+          <span>
+            food explorer
+          </span>
+          {isAdmin && <span className="logo-tag">teste</span>}
+        </div>
       </Link>
 
       <div className="desktop-search">  
@@ -40,12 +47,23 @@ export function Header() {
       </a>
 
       <div className="desktop-components">
-        <a href="#" className="cart-desktop">
+        {isAdmin ?
+          <Link to="/" className="new-dish">
+            <span>Novo prato</span>
+          </Link>
+          :
+          <a href="#" className="cart-desktop">
+            <PiReceipt size={32} />
+            <span>Pedidos(0)</span>
+          </a>
+        }
+
+        {/* <a href="#" className="cart-desktop">
           <PiReceipt size={32} />
           <span>Pedidos(0)</span>
-        </a>
+        </a> */}
         
-        <Link to="/">
+        <Link to="/" onClick={signOut}>
           <PiSignOut  size={32} />
         </Link>
       </div>

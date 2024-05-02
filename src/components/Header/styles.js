@@ -21,13 +21,21 @@ export const Container = styled.header`
     justify-content: center;
     gap: 8px;
 
-    span {
+    .logo-title {
       display: flex;
+      align-items: center;
+      gap: 8px;
       width: max-content;
       font-size: 1.5rem;
       font-family: "Roboto";
       font-weight: bold;
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+
+    .logo-tag {
+      font-size: 0.9rem;
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+      text-align: end;
     }
   }
 
@@ -66,7 +74,7 @@ export const Container = styled.header`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
     padding: 12px 46.5px;
-    border-radius: 8px;
+    border-radius: 5px;
     
     svg {
       margin-right: 8px;
@@ -80,9 +88,37 @@ export const Container = styled.header`
     }
   }
 
+  .new-dish {
+    display: none;
+    align-items: center;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    padding: 12px 46.5px;
+    border-radius: 5px;
+    width: 100%;
+
+    span {
+      font-family: "Poppins";
+      font-size: 0.875rem;
+      white-space: nowrap;
+
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+  }
+
   @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     padding: 0 124px;
     gap: 32px;
+
+    .logo {
+      align-items: start !important;
+    }
+
+    .logo-title {
+      flex-direction: column;
+      align-items: end !important;
+      gap: 4px !important;
+    }
 
     .icon-menu-mobile,
     .cart {
@@ -104,6 +140,11 @@ export const Container = styled.header`
     }
 
     .cart-desktop {
+      display: flex;
+      margin-right: 32px;
+    }
+
+    .new-dish {
       display: flex;
       margin-right: 32px;
     }
