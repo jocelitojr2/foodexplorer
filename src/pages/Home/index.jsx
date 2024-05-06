@@ -67,7 +67,9 @@ export function Home() {
               >
                 {products.filter(product => product.category.id === category.id).map(product => (
                   <SwiperSlide key={product.id}>
-                    {isAdmin ? <PiPencilSimple size={24} className="pencil"/> : <PiHeartBold size={24} className='heart'/> }
+                    <Link to={`/edit/${product.id}`}>
+                      {isAdmin ? <PiPencilSimple size={24} className="pencil"/> : <PiHeartBold size={24} className='heart'/> }
+                    </Link>
                     <img src={`${api.defaults.baseURL}/files/${product.image_url}`} alt={product.name} />
                     <Link to={`/details/${product.id}`}>
                       {product.name}

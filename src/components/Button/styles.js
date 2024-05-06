@@ -27,4 +27,7 @@ export const Container = styled.button`
     margin-right: 8px;
   }
 
+  &.black {
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+  }
 `;

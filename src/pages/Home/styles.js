@@ -126,14 +126,22 @@ export const CardsContent = styled.div`
     height: auto;
     gap: 16px;
 
-    .heart,
-    .pencil {
+    a:first-child {
       position: absolute;
       right: 16px;
       top: 16px;
       cursor: pointer;
     }
 
+    a {
+      .heart,
+      .pencil {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        cursor: pointer;
+      }
+    }
     img {
       width: 88px;
       height: 88px;
