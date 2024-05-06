@@ -1,7 +1,7 @@
 import { PiCaretLeftBold, PiUploadSimpleBold, PiCaretDownBold } from "react-icons/pi";
 import { Container, Content, Form } from './styles';
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
 import { Header } from '../../components/Header';
@@ -21,12 +21,7 @@ export function NewDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredients, setNewIngredients] = useState("");
 
-  // console.log(file);
-  // console.log(fileName);
-  // console.log(name);
-  // console.log(categorie);
-  // console.log(price);
-  // console.log(description);
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -84,20 +79,12 @@ export function NewDish() {
     formData.append("category_id", categorie);
     
     try {
-      console.log(formData);
-      console.log({
-        name, 
-        description, 
-        price, 
-        ingredients: JSON.stringify(ingredients), // Apenas para visualizar no console
-        category_id: categorie,
-        file
-      });
       const response = await api.post("/products", formData);
 
       console.log(response);
 
       alert("Produto criado com sucesso!");
+      navigate("/");
     } catch (error) {
       console.error('Erro ao cadastrar produto:', error);
     }
