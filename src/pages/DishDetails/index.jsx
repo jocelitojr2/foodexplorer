@@ -1,5 +1,6 @@
 import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { Container, Content, Details } from './styles';
+import { useAuth } from "../../hooks/auth"
 import { Link } from "react-router-dom";
 
 import Salada from "../../assets/Mask group.png"
@@ -11,6 +12,9 @@ import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
 
 export function DishDetails() {
+  const { user } = useAuth();
+  const isAdmin = user.role_id ? true : false;
+
   return (
     <Container>
       <Header />
@@ -34,10 +38,18 @@ export function DishDetails() {
               <Tag title="rabanete" />
               <Tag title="tomate" />
             </div>
-            <div className="dish-options">
-              <InputNumber />
-              <Button title="pedir ∙ R$ 25,00" icon={PiReceipt} className="button-include"/>
-            </div>
+            {isAdmin ? (
+              <div className="dish-options">
+                <Link to="#" className="button-edit">
+                  <span>Editar prato</span>
+                </Link>
+              </div>
+              ) : (
+              <div className="dish-options">
+                <InputNumber />
+                <Button title="pedir ∙ R$ 25,00" icon={PiReceipt} className="button-include"/>
+              </div>
+            )}
           </div>
         </Details>
   

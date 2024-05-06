@@ -85,6 +85,13 @@ export const Details = styled.div`
         height: 100%;
         width: 188px;
       }
+
+      .button-edit {
+        background-color: ${({theme}) => theme.COLORS.TOMATO_100};
+        color: ${({theme}) => theme.COLORS.LIGHT_100};
+        padding: 12px 24px;
+        border-radius: 5px;
+      }
     }
 
     
