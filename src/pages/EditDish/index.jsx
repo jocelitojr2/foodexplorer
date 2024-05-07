@@ -39,12 +39,12 @@ export function EditDish() {
   };
 
   function handleAddIngredients() {
-    setIngredients(prevState => [...prevState, newIngredients]);
+    setIngredients(prevState => [...prevState, {name: newIngredients}]);
     setNewIngredients("");
   }
 
   function handleRemoveIngredients(deleted) {
-    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
+    setIngredients(prevState => prevState.filter(ingredient => ingredient.name !== deleted));
   }
 
   async function handleNewProduct() {
@@ -97,6 +97,17 @@ export function EditDish() {
     }
   }
 
+  async function handleRemoveProduct() {
+    try {
+      const response = await api.delete(`/products/${product_id}`);
+      console.log(response);
+      alert("Produto deletado com sucesso!");
+      navigate("/");
+    } catch (error) {
+      console.error('Erro ao deletar produto:', error);
+    }
+  }
+
   useEffect(() => {
     async function fetchCategories() {
       const categoryResponse = await api.get("/categories");
@@ -104,21 +115,22 @@ export function EditDish() {
     }
     fetchCategories();
     
-  
     async function fetchProduct() {
       const productResponse = await api.get(`/products/${product_id}`);
-      console.log(productResponse.data);
       const { name, description, image_url, price, } = productResponse.data.product;
       const category_id = productResponse.data.category.id;
+      const { ingredients } = productResponse.data;
 
       setName(name);
       setFileName(image_url);
       setDescription(description);
       setPrice(price);
       setCategorySelected(category_id);
+      setIngredients(ingredients);
+      console.log(ingredients)
     }
     fetchProduct()
-  })
+  }, [product_id])
 
   return (
     <Container>
@@ -176,10 +188,11 @@ export function EditDish() {
             <div className="dish-ingredients">
               {
                 ingredients && ingredients.map((ingredient, index) => (
+                  
                   <DishIngredients 
                     key={String(index)} 
-                    value={ingredient}
-                    onClick={() => handleRemoveIngredients(ingredient)} 
+                    value={ingredient.name}
+                    onClick={() => handleRemoveIngredients(ingredient.name)} 
                   />
                 ))
               }
@@ -208,7 +221,7 @@ export function EditDish() {
           </div>
 
           <div className="action-buttons">
-            <Button className="black" title="Excluir prato" />
+            <Button className="black" title="Excluir prato" onClick={handleRemoveProduct}/>
             <Button title="Salvar alterações" type="submit" />
           </div>
 
