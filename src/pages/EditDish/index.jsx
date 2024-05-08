@@ -19,12 +19,12 @@ export function EditDish() {
 
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const [fileNameOdl, setFileNameOdl] = useState('');
   const [name, setName] = useState("");
   const [categorie, setCategorie] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
-  const [categorySelected, setCategorySelected] = useState(0);
   const [ingredients, setIngredients] = useState([]);
   const [newIngredients, setNewIngredients] = useState("");
 
@@ -47,22 +47,22 @@ export function EditDish() {
     setIngredients(prevState => prevState.filter(ingredient => ingredient.name !== deleted));
   }
 
-  async function handleNewProduct() {
+  async function handleEditProduct() {
     const formData = new FormData();
 
     if(newIngredients) {
       return alert("Voce deixou um ingrediente sem adicionar!")
     }
 
-    if(!file) {
-      return alert("Selecione uma imagem para o Produto!");
+    if (fileName != fileNameOdl) {
+      alert("teste Imagem");
     }
 
     if(!name) {
       return alert("Digite um nome para o Produto!");
     }
 
-    if(!categorie) {
+    if(categorie === "") {
       return alert("Selecione uma categoria para o Produto!");
     }
 
@@ -78,20 +78,21 @@ export function EditDish() {
       return alert("Digite uma descrição para o Produto!");
     }
 
+
     formData.append("name", name);
     formData.append("description", description);
     formData.append("image", file);
     formData.append("price", Number(price));
-    formData.append("ingredients", JSON.stringify(ingredients));
+    formData.append("ingredients", JSON.stringify(ingredients.map((ingredient) => ingredient.name)));
     formData.append("category_id", categorie);
-    
+     
     try {
-      const response = await api.post("/products", formData);
+      const response = await api.put(`/products/${product_id}`, formData);
 
       console.log(response);
 
       alert("Produto criado com sucesso!");
-      navigate("/");
+      //navigate("/");
     } catch (error) {
       console.error('Erro ao cadastrar produto:', error);
     }
@@ -117,17 +118,17 @@ export function EditDish() {
     
     async function fetchProduct() {
       const productResponse = await api.get(`/products/${product_id}`);
-      const { name, description, image_url, price, } = productResponse.data.product;
+      const { name, description, image_url, price } = productResponse.data.product;
       const category_id = productResponse.data.category.id;
       const { ingredients } = productResponse.data;
 
       setName(name);
       setFileName(image_url);
+      setFileNameOdl(image_url);
       setDescription(description);
       setPrice(price);
-      setCategorySelected(category_id);
+      setCategorie(category_id);
       setIngredients(ingredients);
-      console.log(ingredients)
     }
     fetchProduct()
   }, [product_id])
@@ -142,7 +143,7 @@ export function EditDish() {
             voltar
         </Link>
 
-        <Form onSubmit={(e) => { e.preventDefault(); handleNewProduct(); }}>
+        <Form onSubmit={(e) => { e.preventDefault(); handleEditProduct(); }}>
           <h2>Editar prato</h2>
 
           <div className="separator">
@@ -171,7 +172,7 @@ export function EditDish() {
               Categoria
             </span>
             <label className="select">
-              <select onChange={e => setCategorie(e.target.value)} value={categorySelected} >
+              <select onChange={e => setCategorie(e.target.value)} value={categorie} >
                 <option value="">Selecione a categoria</option>
                 { categories && categories.map(category => (
                   <option value={category.id} key={category.id}>{category.name}</option>
