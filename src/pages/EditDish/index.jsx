@@ -13,13 +13,12 @@ import { Textarea } from '../../components/Textarea';
 import { DishIngredients } from '../../components/DishIngredients';
 export function EditDish() {
   //const { user } = useAuth();
-  //const isAdmin = user.role_id ? true : false;
+  //const isAdmin = user.role_id === 1 ? true : false;
 
   const { product_id } = useParams('product_id');
 
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
-  const [fileNameOdl, setFileNameOdl] = useState('');
   const [name, setName] = useState("");
   const [categorie, setCategorie] = useState("");
   const [price, setPrice] = useState(0);
@@ -54,10 +53,6 @@ export function EditDish() {
       return alert("Voce deixou um ingrediente sem adicionar!")
     }
 
-    if (fileName != fileNameOdl) {
-      alert("teste Imagem");
-    }
-
     if(!name) {
       return alert("Digite um nome para o Produto!");
     }
@@ -87,12 +82,10 @@ export function EditDish() {
     formData.append("category_id", categorie);
      
     try {
-      const response = await api.put(`/products/${product_id}`, formData);
-
-      console.log(response);
+      await api.put(`/products/${product_id}`, formData);
 
       alert("Produto criado com sucesso!");
-      //navigate("/");
+      navigate(`/details/${product_id}`);
     } catch (error) {
       console.error('Erro ao cadastrar produto:', error);
     }
@@ -124,7 +117,6 @@ export function EditDish() {
 
       setName(name);
       setFileName(image_url);
-      setFileNameOdl(image_url);
       setDescription(description);
       setPrice(price);
       setCategorie(category_id);

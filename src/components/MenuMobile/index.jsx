@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAuth } from "../../hooks/auth"
 import { Container } from './styles'
 import { PiX, PiMagnifyingGlass  } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 import { Input } from "../Input"
 export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
@@ -23,7 +24,10 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
         />
         <ul>
           <li>
-            <a href="#" onClick={signOut}>Sair</a>
+            <Link to="/new">Novo Prato</Link>
+          </li>
+          <li>
+            <Link to="/" onClick={signOut}>Sair</Link>
           </li>
         </ul>
         

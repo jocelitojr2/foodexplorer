@@ -45,6 +45,7 @@ export const Container = styled.div`
 
       li {
         padding: 10px;
+        border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK_1000};
 
         a {
           font-size: 1.5rem;
@@ -52,10 +53,6 @@ export const Container = styled.div`
           color: ${({theme}) => theme.COLORS.LIGHT_300};
         }
       }
-    }
-
-    li:last-child {
-      border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK_1000};
     }
   }
 

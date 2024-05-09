@@ -13,7 +13,6 @@ import 'swiper/css/navigation';
 import { Container, Content, Banner, CardsContent } from './styles';
 
 import BannerDecoration from "../../assets/banner-decoration.png"
-//import Salada from "../../assets/Mask group.png"
 
 import { InputNumber } from '../../components/InputNumber';
 import { Header } from '../../components/Header';
@@ -23,7 +22,7 @@ import { Button } from '../../components/Button';
 
 export function Home() {
   const { user } = useAuth();
-  const isAdmin = user.role_id ? true : false;
+  const isAdmin = user.role_id === 1 ? true : false;
 
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);

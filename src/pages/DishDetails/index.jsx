@@ -1,9 +1,9 @@
 import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { Container, Content, Details } from './styles';
 import { useAuth } from "../../hooks/auth"
-import { Link } from "react-router-dom";
-
-import Salada from "../../assets/Mask group.png"
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { api } from "../../services/api";
 
 import { InputNumber } from '../../components/InputNumber';
 import { Header } from '../../components/Header';
@@ -13,7 +13,31 @@ import { Button } from '../../components/Button';
 
 export function DishDetails() {
   const { user } = useAuth();
-  const isAdmin = user.role_id ? true : false;
+  const isAdmin = user.role_id === 1 ? true : false;
+
+  const { product_id } = useParams('product_id');
+
+  const [fileName, setFileName] = useState('');
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    
+    async function fetchProduct() {
+      const productResponse = await api.get(`/products/${product_id}`);
+      const { name, description, image_url, price } = productResponse.data.product;
+      const { ingredients } = productResponse.data;
+
+      setName(name);
+      setFileName(image_url);
+      setDescription(description);
+      setPrice(price);
+      setIngredients(ingredients);
+    }
+    fetchProduct()
+  }, [product_id])
 
   return (
     <Container>
@@ -26,28 +50,26 @@ export function DishDetails() {
         </Link>
 
         <Details>
-          <img src={Salada} alt="Imagem decorativa do banner" />
+          <img src={`${api.defaults.baseURL}/files/${fileName}`} alt={name} />
           <div className='dish-information'>
-            <h2>Salada Ravanello</h2>
-            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+            <h2>{name}</h2>
+            <p>{description}</p>
             <div className="dish-tags">
-              <Tag title="alface" />
-              <Tag title="cebola" />
-              <Tag title="pão naan" />
-              <Tag title="pepino" />
-              <Tag title="rabanete" />
-              <Tag title="tomate" />
+              { ingredients && ingredients.map((ingredient) => (
+                  <Tag key={ingredient.id} title={ingredient.name} />
+                ))
+              }
             </div>
             {isAdmin ? (
               <div className="dish-options">
-                <Link to="#" className="button-edit">
+                <Link to={`/edit/${product_id}`} className="button-edit">
                   <span>Editar prato</span>
                 </Link>
               </div>
               ) : (
               <div className="dish-options">
                 <InputNumber />
-                <Button title="pedir ∙ R$ 25,00" icon={PiReceipt} className="button-include"/>
+                <Button title={`pedir ∙ R$${price}`} icon={PiReceipt} className="button-include"/>
               </div>
             )}
           </div>

@@ -11,7 +11,7 @@ import favIcon from "../../assets/logo.svg"
 
 export function Header() {
   const { signOut, user } = useAuth();
-  const isAdmin = user.role_id ? true : false;
+  const isAdmin = user.role_id === 1 ? true : false;
   
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
@@ -30,7 +30,7 @@ export function Header() {
           <span>
             food explorer
           </span>
-          {isAdmin && <span className="logo-tag">teste</span>}
+          {isAdmin && <span className="logo-tag">admin</span>}
         </div>
       </Link>
 
@@ -48,7 +48,7 @@ export function Header() {
 
       <div className="desktop-components">
         {isAdmin ?
-          <Link to="/" className="new-dish">
+          <Link to="/new" className="new-dish">
             <span>Novo prato</span>
           </Link>
           :

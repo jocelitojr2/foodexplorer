@@ -92,6 +92,11 @@ export const CardsContent = styled.div`
     margin-bottom: 24px;
   }
 
+  .dish-actions button {
+    height: 3rem;
+    width: 100%;
+  }
+
   .swiper {
     width: 100%;
     height: 100%;
@@ -186,6 +191,11 @@ export const CardsContent = styled.div`
     font-size: 1.5rem;
   }
 
+  .swiper-button-prev.swiper-button-disabled, 
+  .swiper-button-next.swiper-button-disabled {
+    display: none;
+  }
+
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     .swiper-slide {
       width: 304px;
@@ -219,6 +229,7 @@ export const CardsContent = styled.div`
 
     .swiper-button-prev, .swiper-button-next {
       display: flex;
+      filter: drop-shadow(0px 0px 3px #000000);
     }
   }
 `;
