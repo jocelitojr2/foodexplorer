@@ -1,6 +1,7 @@
 import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { Container, Content, Details } from './styles';
-import { useAuth } from "../../hooks/auth"
+import { useAuth } from "../../hooks/auth";
+import { useCart } from '../../context/CartContext';
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { api } from "../../services/api";
@@ -12,8 +13,9 @@ import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
 
 export function DishDetails() {
-  const { user } = useAuth();
-  const isAdmin = user.role_id === 1 ? true : false;
+  const { userPermission } = useAuth();
+  const { addToCart } = useCart();
+  const [isAdmin, setIsAdmin] = useState();
 
   const { product_id } = useParams('product_id');
 
@@ -24,6 +26,11 @@ export function DishDetails() {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
+    async function UserPermission() {
+      setIsAdmin(userPermission.role_id === 1 ? true : false);
+    }
+
+    UserPermission()
     
     async function fetchProduct() {
       const productResponse = await api.get(`/products/${product_id}`);
@@ -37,6 +44,7 @@ export function DishDetails() {
       setIngredients(ingredients);
     }
     fetchProduct()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product_id])
 
   return (
@@ -69,7 +77,7 @@ export function DishDetails() {
               ) : (
               <div className="dish-options">
                 <InputNumber />
-                <Button title={`pedir ∙ R$${price}`} icon={PiReceipt} className="button-include"/>
+                <Button onClick={addToCart} title={`pedir ∙ R$${price}`} icon={PiReceipt} className="button-include"/>
               </div>
             )}
           </div>

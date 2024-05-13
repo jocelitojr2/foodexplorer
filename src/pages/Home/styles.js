@@ -128,7 +128,8 @@ export const CardsContent = styled.div`
     padding: 24px;
     border-radius: 8px;
     width: 194px;
-    height: auto;
+    min-height: 294px;
+    max-height: 100%;
     gap: 16px;
 
     a:first-child {
@@ -142,8 +143,8 @@ export const CardsContent = styled.div`
       .heart,
       .pencil {
         position: absolute;
-        right: 16px;
-        top: 16px;
+        right: 0px;
+        top: 0px;
         cursor: pointer;
       }
     }
@@ -161,23 +162,15 @@ export const CardsContent = styled.div`
     }
 
     p {
-      display: -webkit-box;
-      line-height: 16px;
-      max-height: 32px;
-      font-family: "Poppins";
-      font-size: 0.8rem;
-      font-weight: 400;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      
-      color: ${({ theme }) => theme.COLORS.LIGHT_400};
+      display: none;
     }
 
     span {
       color: ${({theme}) => theme.COLORS.CAKE_200};
+    }
+
+    .dish-actions {
+      display: contents;
     }
   }
 
@@ -212,6 +205,17 @@ export const CardsContent = styled.div`
       }
 
       p {
+        display: -webkit-box;
+        line-height: 16px;
+        max-height: 32px;
+        font-weight: 400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
         font-family: "Roboto";
         font-size: 1rem;
       }

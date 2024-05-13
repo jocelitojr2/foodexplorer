@@ -5,11 +5,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-top: 158px;
   width: 100%;
   height: 100vh;
 
-  padding: 65px;
+  padding: 0 4.062rem;
 
   > .logo {
     display: flex;
@@ -34,6 +34,8 @@ export const Container = styled.div`
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     flex-direction: row;
+    margin-top: 0;
+    padding: 0 4.062rem;
 
     h1 {
       font-size: 2.31rem;

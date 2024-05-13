@@ -3,7 +3,8 @@ import { PiCaretRight, PiHeartBold, PiPencilSimple  } from "react-icons/pi";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useEffect } from "react";
 import { Navigation } from 'swiper/modules';
-import { useAuth } from "../../hooks/auth"
+import { useAuth } from "../../hooks/auth";
+import { useCart } from '../../context/CartContext';
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import 'swiper/css';
@@ -21,14 +22,22 @@ import { Button } from '../../components/Button';
 
 
 export function Home() {
-  const { user } = useAuth();
-  const isAdmin = user.role_id === 1 ? true : false;
+  const { userPermission } = useAuth();
+  const { addToCart } = useCart();
+  
+  const [isAdmin, setIsAdmin] = useState();
 
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   console.log(products)
 
   useEffect(() => {
+    async function UserPermission() {
+      setIsAdmin(userPermission.role_id === 1 ? true : false);
+    }
+
+    UserPermission()
+
     async function fetchCategoriesAndProducts() {
       const categoryResponse = await api.get("/categories");
       setCategories(categoryResponse.data);
@@ -38,6 +47,7 @@ export function Home() {
     }
 
     fetchCategoriesAndProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -66,9 +76,14 @@ export function Home() {
               >
                 {products.filter(product => product.category.id === category.id).map(product => (
                   <SwiperSlide key={product.id}>
-                    <Link to={`/edit/${product.id}`}>
-                      {isAdmin ? <PiPencilSimple size={24} className="pencil"/> : <PiHeartBold size={24} className='heart'/> }
-                    </Link>
+                    {isAdmin ?
+                      <Link to={`/edit/${product.id}`}> 
+                        <PiPencilSimple size={24} className="pencil"/>
+                      </Link> : 
+                      <Link to={`/details/${product.id}`}>
+                        <PiHeartBold size={24} className='heart'/>
+                      </Link>
+                    }
                     <img src={`${api.defaults.baseURL}/files/${product.image_url}`} alt={product.name} />
                     <Link to={`/details/${product.id}`}>
                       {product.name}
@@ -80,7 +95,7 @@ export function Home() {
                     {!isAdmin &&
                       <div className='dish-actions'>
                         <InputNumber/>
-                        <Button title="Incluir"/>
+                        <Button title="Incluir" onClick={addToCart} />
                       </div>
                     }
                   </SwiperSlide>

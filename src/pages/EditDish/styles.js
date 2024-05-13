@@ -74,6 +74,11 @@ export const Form = styled.form`
     cursor: pointer;
 
     > span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
       font-family: "Poppins";
       font-weight: 500;
       margin-left: 8px;
@@ -143,6 +148,28 @@ export const Form = styled.form`
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .w-25 {
+      flex: 0 0 calc(25% - 1rem + (1rem / 4));
+    }
+
+    .w-50 {
+      flex: 0 0 calc(50% - 1rem + (1rem / 2));
+    }
+
+    .w-75 {
+      flex: 0 0 calc(75% - 1rem + (1rem / 1.3333));
+    }
+
+    .w-100 {
+      flex: 0 0 100%;
+    }
+
     .action-buttons {
       justify-content: end;
       

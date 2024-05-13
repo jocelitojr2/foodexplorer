@@ -4,7 +4,7 @@ import { Container } from "./styles";
 import { PiPlusBold , PiMinusBold  } from "react-icons/pi";
 
 export function InputNumber() {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
 
   function handleIncrement() {
     if (counter < 50) {

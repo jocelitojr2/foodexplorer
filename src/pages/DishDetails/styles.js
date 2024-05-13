@@ -87,6 +87,11 @@ export const Details = styled.div`
       }
 
       .button-edit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 48px;
         background-color: ${({theme}) => theme.COLORS.TOMATO_100};
         color: ${({theme}) => theme.COLORS.LIGHT_100};
         padding: 12px 24px;
@@ -126,6 +131,10 @@ export const Details = styled.div`
       .dish-options {
         justify-content: start;
         gap: 33px;
+
+        .button-edit {
+          width: 132px;
+        }
 
         .button-include svg {
           display: none;

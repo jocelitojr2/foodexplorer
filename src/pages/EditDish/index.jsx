@@ -137,80 +137,81 @@ export function EditDish() {
 
         <Form onSubmit={(e) => { e.preventDefault(); handleEditProduct(); }}>
           <h2>Editar prato</h2>
-
-          <div className="separator">
-            <span>Imagem do prato</span>
-            <label className="upload-file">
-              <PiUploadSimpleBold  size={24}/>
-              <span>{fileName}</span>
-              
-              <input 
-                id="upload" 
-                type="file" 
-                onChange={handleFileChange}
-              />
-            </label>
-          </div>
-
-          <div className="separator">
-            <span>
-              Nome
-            </span>
-            <Input placeholder="Ex: Salada Ceasar" onChange={e => setName(e.target.value)} value={name} />
-          </div>
-
-          <div className="separator">
-            <span>
-              Categoria
-            </span>
-            <label className="select">
-              <select onChange={e => setCategorie(e.target.value)} value={categorie} >
-                <option value="">Selecione a categoria</option>
-                { categories && categories.map(category => (
-                  <option value={category.id} key={category.id}>{category.name}</option>
-                ))}
-              </select>
-              <PiCaretDownBold size={24} />
-            </label>
-          </div>
-
-          <div className="separator">
-            <span>
-              Ingredientes
-            </span>
-            <div className="dish-ingredients">
-              {
-                ingredients && ingredients.map((ingredient, index) => (
-                  
-                  <DishIngredients 
-                    key={String(index)} 
-                    value={ingredient.name}
-                    onClick={() => handleRemoveIngredients(ingredient.name)} 
-                  />
-                ))
-              }
-              <DishIngredients 
-                placeholder="Adicionar" 
-                isNew
-                value={newIngredients}
-                onChange={e => setNewIngredients(e.target.value)}
-                onClick={handleAddIngredients}
-              />
+          <div className="row">
+            <div className="separator w-25">
+              <span>Imagem do prato</span>
+              <label className="upload-file">
+                <PiUploadSimpleBold  size={24}/>
+                <span>{fileName}</span>
+                
+                <input 
+                  id="upload" 
+                  type="file" 
+                  onChange={handleFileChange}
+                />
+              </label>
             </div>
-          </div>
 
-          <div className="separator">
-            <span>
-              Preço
-            </span>
-            <Input placeholder="R$ 00,00"  onChange={e => setPrice(e.target.value)} value={price}/>
-          </div>
+            <div className="separator w-50">
+              <span>
+                Nome
+              </span>
+              <Input placeholder="Ex: Salada Ceasar" onChange={e => setName(e.target.value)} value={name} />
+            </div>
 
-          <div className="separator">
-            <span>
-              Descrição
-            </span>
-            <Textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"  onChange={e => setDescription(e.target.value)} defaultValue={description} />
+            <div className="separator w-25">
+              <span>
+                Categoria
+              </span>
+              <label className="select">
+                <select onChange={e => setCategorie(e.target.value)} value={categorie} >
+                  <option value="">Selecione a categoria</option>
+                  { categories && categories.map(category => (
+                    <option value={category.id} key={category.id}>{category.name}</option>
+                  ))}
+                </select>
+                <PiCaretDownBold size={24} />
+              </label>
+            </div>
+
+            <div className="separator w-75">
+              <span>
+                Ingredientes
+              </span>
+              <div className="dish-ingredients">
+                {
+                  ingredients && ingredients.map((ingredient, index) => (
+                    
+                    <DishIngredients 
+                      key={String(index)} 
+                      value={ingredient.name}
+                      onClick={() => handleRemoveIngredients(ingredient.name)} 
+                    />
+                  ))
+                }
+                <DishIngredients 
+                  placeholder="Adicionar" 
+                  isNew
+                  value={newIngredients}
+                  onChange={e => setNewIngredients(e.target.value)}
+                  onClick={handleAddIngredients}
+                />
+              </div>
+            </div>
+
+            <div className="separator w-25">
+              <span>
+                Preço
+              </span>
+              <Input placeholder="R$ 00,00"  onChange={e => setPrice(e.target.value)} value={price}/>
+            </div>
+
+            <div className="separator w-100">
+              <span>
+                Descrição
+              </span>
+              <Textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"  onChange={e => setDescription(e.target.value)} defaultValue={description} />
+            </div>
           </div>
 
           <div className="action-buttons">

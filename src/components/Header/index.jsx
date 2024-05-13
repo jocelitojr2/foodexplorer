@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PiReceipt, PiListLight, PiMagnifyingGlass, PiSignOut } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/auth"
+import { useAuth } from "../../hooks/auth";
+import { useCart } from '../../context/CartContext';
 
 import { Container } from "./styles";
 import { MenuMobile } from "../MenuMobile";
@@ -10,10 +11,20 @@ import { Input } from "../Input"
 import favIcon from "../../assets/logo.svg"
 
 export function Header() {
-  const { signOut, user } = useAuth();
-  const isAdmin = user.role_id === 1 ? true : false;
+  const { signOut, userPermission } = useAuth();
+  const [isAdmin, setIsAdmin] = useState();
+  const { cartItems } = useCart();
   
   const [menuIsVisible, setMenuIsVisible] = useState(false);
+
+  useEffect(() => {
+    async function UserPermission() {
+      setIsAdmin(userPermission.role_id === 1 ? true : false);
+    }
+
+    UserPermission()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container>
@@ -43,7 +54,7 @@ export function Header() {
 
       <a href="#" className="cart">
         <PiReceipt size={32} />
-        <span>1</span>
+        <span>{cartItems}</span>
       </a>
 
       <div className="desktop-components">
@@ -54,7 +65,7 @@ export function Header() {
           :
           <a href="#" className="cart-desktop">
             <PiReceipt size={32} />
-            <span>Pedidos(0)</span>
+            <span>Pedidos({cartItems})</span>
           </a>
         }
 

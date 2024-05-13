@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from "../../hooks/auth"
 import { Container } from './styles'
 import { PiX, PiMagnifyingGlass  } from "react-icons/pi";
@@ -6,10 +6,18 @@ import { Link } from "react-router-dom";
 
 import { Input } from "../Input"
 export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
-  const { signOut } = useAuth();
+  const { signOut, userPermission } = useAuth();
+  const [isAdmin, setIsAdmin] = useState();
 
   useEffect(() => {
+    async function UserPermission() {
+      setIsAdmin(userPermission.role_id === 1 ? true : false);
+    }
+
+    UserPermission()
+
     document.body.style.overflowY = menuIsVisible ? 'hidden' : 'auto';
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuIsVisible])  
   return (
     <Container $isVisible={menuIsVisible}>
@@ -23,9 +31,11 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
           icon={PiMagnifyingGlass} 
         />
         <ul>
+        {isAdmin &&
           <li>
             <Link to="/new">Novo Prato</Link>
           </li>
+        }
           <li>
             <Link to="/" onClick={signOut}>Sair</Link>
           </li>
