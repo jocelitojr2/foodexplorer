@@ -84,7 +84,7 @@ export function NewDish() {
       console.log(response);
 
       alert("Produto criado com sucesso!");
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error('Erro ao cadastrar produto:', error);
     }

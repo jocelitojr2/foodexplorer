@@ -3,7 +3,6 @@ import { PiCaretRight, PiHeartBold, PiPencilSimple  } from "react-icons/pi";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useEffect } from "react";
 import { Navigation } from 'swiper/modules';
-import { useAuth } from "../../hooks/auth";
 import { useCart } from '../../context/CartContext';
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
@@ -22,37 +21,42 @@ import { Button } from '../../components/Button';
 
 
 export function Home() {
-  const { userPermission } = useAuth();
+  const userData = localStorage.getItem("@FoodExplorer:user");
+  const { userPermission } = JSON.parse(userData);
   const { addToCart } = useCart();
   
-  const [isAdmin, setIsAdmin] = useState();
-
+  const isAdmin = userPermission.role_id === 1 ? true : false;
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log(products)
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect(() => {
-    async function UserPermission() {
-      setIsAdmin(userPermission.role_id === 1 ? true : false);
+  const handleSearch = (term) => {
+    if (term === '') {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(product => 
+        product.name.toLowerCase().includes(term.toLowerCase()) ||
+        product.description.toLowerCase().includes(term.toLowerCase())
+      );
+      setFilteredProducts(filtered);
     }
-
-    UserPermission()
-
+  };
+  
+  useEffect(() => {
     async function fetchCategoriesAndProducts() {
       const categoryResponse = await api.get("/categories");
       setCategories(categoryResponse.data);
       
       const productResponse = await api.get("/products");
       setProducts(productResponse.data);
+      setFilteredProducts(productResponse.data);
     }
-
     fetchCategoriesAndProducts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <Container>
-      <Header />
+      <Header onSearch={handleSearch} />
 
       <Content>
         <Banner>
@@ -74,7 +78,7 @@ export function Home() {
                 modules={[Navigation]}
                 className="mySwiper"
               >
-                {products.filter(product => product.category.id === category.id).map(product => (
+                {filteredProducts.filter(product => product.category.id === category.id).map(product => (
                   <SwiperSlide key={product.id}>
                     {isAdmin ?
                       <Link to={`/edit/${product.id}`}> 

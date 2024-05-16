@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
       const response = await api.post("/sessions", { email, password });
       const { user, token, userPermission } = response.data;
 
-      localStorage.setItem("@FoodExplorer:user", JSON.stringify({...user, ...userPermission}));
+      localStorage.setItem("@FoodExplorer:user", JSON.stringify({user, userPermission}));
       localStorage.setItem("@FoodExplorer:token", token);
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -36,14 +36,15 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem("@FoodExplorer:token");
-    const user = localStorage.getItem("@FoodExplorer:user");
+    const userData = localStorage.getItem("@FoodExplorer:user");
 
-    if( token && user ) {
+    if( token && userData ) {
+      const user = JSON.parse(userData);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
       setData({ 
+        user: user.user,
         token, 
-        user: JSON.parse(user)
+        userPermission: user.userPermission
       });
     }
 
@@ -63,7 +64,6 @@ function AuthProvider({ children }) {
 
 function useAuth() {
   const context = useContext(AuthContext);
-
   return context;
 }
 

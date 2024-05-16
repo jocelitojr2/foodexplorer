@@ -12,8 +12,10 @@ import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
 import { DishIngredients } from '../../components/DishIngredients';
 export function EditDish() {
-  //const { user } = useAuth();
-  //const isAdmin = user.role_id === 1 ? true : false;
+  const userData = localStorage.getItem("@FoodExplorer:user");
+  const { userPermission } = JSON.parse(userData);
+
+  const isAdmin = userPermission.role_id === 1 ? true : false;
 
   const { product_id } = useParams('product_id');
 
@@ -73,6 +75,11 @@ export function EditDish() {
       return alert("Digite uma descrição para o Produto!");
     }
 
+    if (isAdmin == false) {
+      alert("Somente administrador pode editar um produto!");
+
+      return navigate(-1);
+    }
 
     formData.append("name", name);
     formData.append("description", description);
@@ -84,7 +91,7 @@ export function EditDish() {
     try {
       await api.put(`/products/${product_id}`, formData);
 
-      alert("Produto criado com sucesso!");
+      alert("Produto editado com sucesso!");
       navigate(`/details/${product_id}`);
     } catch (error) {
       console.error('Erro ao cadastrar produto:', error);
@@ -96,7 +103,7 @@ export function EditDish() {
       const response = await api.delete(`/products/${product_id}`);
       console.log(response);
       alert("Produto deletado com sucesso!");
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error('Erro ao deletar produto:', error);
     }

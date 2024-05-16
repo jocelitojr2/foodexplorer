@@ -128,8 +128,7 @@ export const CardsContent = styled.div`
     padding: 24px;
     border-radius: 8px;
     width: 194px;
-    min-height: 294px;
-    max-height: 100%;
+    height: auto;
     gap: 16px;
 
     a:first-child {

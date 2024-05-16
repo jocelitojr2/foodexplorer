@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { PiReceipt, PiListLight, PiMagnifyingGlass, PiSignOut } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
@@ -10,27 +10,29 @@ import { Input } from "../Input"
 
 import favIcon from "../../assets/logo.svg"
 
-export function Header() {
-  const { signOut, userPermission } = useAuth();
-  const [isAdmin, setIsAdmin] = useState();
+export function Header({ onSearch }) {
+  const { signOut } = useAuth();
+  const userData = localStorage.getItem("@FoodExplorer:user");
+  const { userPermission } = JSON.parse(userData);
   const { cartItems } = useCart();
   
+  const isAdmin = userPermission.role_id === 1 ? true : false;
+  
   const [menuIsVisible, setMenuIsVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    async function UserPermission() {
-      setIsAdmin(userPermission.role_id === 1 ? true : false);
-    }
-
-    UserPermission()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    onSearch(value);
+  };
 
   return (
     <Container>
       <MenuMobile
         menuIsVisible={menuIsVisible}
         setMenuIsVisible={setMenuIsVisible}
+        onSearch={onSearch}
       />
       
       <PiListLight size={32} onClick={() => setMenuIsVisible(true)} className="icon-menu-mobile" />
@@ -49,6 +51,8 @@ export function Header() {
         <Input 
             placeholder="Busque por pratos ou ingredientes"
             icon={PiMagnifyingGlass} 
+            value={searchTerm}
+            onChange={handleSearchChange}
         />
       </div>
 
@@ -68,11 +72,6 @@ export function Header() {
             <span>Pedidos({cartItems})</span>
           </a>
         }
-
-        {/* <a href="#" className="cart-desktop">
-          <PiReceipt size={32} />
-          <span>Pedidos(0)</span>
-        </a> */}
         
         <Link to="/" onClick={signOut}>
           <PiSignOut  size={32} />

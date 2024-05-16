@@ -1,6 +1,5 @@
 import { PiCaretLeftBold, PiReceipt } from "react-icons/pi";
 import { Container, Content, Details } from './styles';
-import { useAuth } from "../../hooks/auth";
 import { useCart } from '../../context/CartContext';
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
@@ -13,10 +12,11 @@ import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
 
 export function DishDetails() {
-  const { userPermission } = useAuth();
+  const userData = localStorage.getItem("@FoodExplorer:user");
+  const { userPermission } = JSON.parse(userData);
   const { addToCart } = useCart();
-  const [isAdmin, setIsAdmin] = useState();
-
+  
+  const isAdmin = userPermission.role_id === 1 ? true : false;
   const { product_id } = useParams('product_id');
 
   const [fileName, setFileName] = useState('');
@@ -26,12 +26,6 @@ export function DishDetails() {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    async function UserPermission() {
-      setIsAdmin(userPermission.role_id === 1 ? true : false);
-    }
-
-    UserPermission()
-    
     async function fetchProduct() {
       const productResponse = await api.get(`/products/${product_id}`);
       const { name, description, image_url, price } = productResponse.data.product;
@@ -44,7 +38,6 @@ export function DishDetails() {
       setIngredients(ingredients);
     }
     fetchProduct()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product_id])
 
   return (

@@ -49,6 +49,12 @@ export const Form = styled.form`
     font-size: 32px;
   }
 
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
   .separator {
     display: flex;
     flex-direction: column;
@@ -147,9 +153,22 @@ export const Form = styled.form`
     gap: 32px;
   }
 
+  @media (max-width: ${DEVICE_BREAKPOINTS.SM}) {
+    .dish-ingredients {
+      div {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
   @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     .row {
       display: flex;
+      flex-direction: unset;
       flex-wrap: wrap;
       gap: 1rem;
     }
@@ -170,11 +189,25 @@ export const Form = styled.form`
       flex: 0 0 100%;
     }
 
+    .upload-file {
+      > span {
+        width: 80px;
+      }
+    }
+
     .action-buttons {
       justify-content: end;
       
       button {
         width: auto;
+      }
+    }
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.XL}) {
+    .upload-file {
+      > span {
+        width: 165px;
       }
     }
   }

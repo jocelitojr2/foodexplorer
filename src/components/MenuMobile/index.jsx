@@ -5,20 +5,30 @@ import { PiX, PiMagnifyingGlass  } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 import { Input } from "../Input"
-export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
-  const { signOut, userPermission } = useAuth();
-  const [isAdmin, setIsAdmin] = useState();
+export function MenuMobile({ menuIsVisible, setMenuIsVisible, onSearch}) {
+  const { signOut } = useAuth();
+  const userData = localStorage.getItem("@FoodExplorer:user");
+  const { userPermission } = JSON.parse(userData);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const isAdmin = userPermission.role_id === 1 ? true : false;
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    onSearch(value);
+  };
+
+  const handleBlurSearch = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setMenuIsVisible(false);
+    }
+  };
 
   useEffect(() => {
-    async function UserPermission() {
-      setIsAdmin(userPermission.role_id === 1 ? true : false);
-    }
-
-    UserPermission()
-
     document.body.style.overflowY = menuIsVisible ? 'hidden' : 'auto';
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuIsVisible])  
+
   return (
     <Container $isVisible={menuIsVisible}>
       <div className='header'>
@@ -29,6 +39,9 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible}) {
         <Input 
           placeholder="Busque por pratos ou ingredientes"
           icon={PiMagnifyingGlass} 
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onBlur={handleBlurSearch}
         />
         <ul>
         {isAdmin &&
