@@ -2,7 +2,7 @@ import { PiCaretLeftBold, PiUploadSimpleBold, PiCaretDownBold } from "react-icon
 import { Container, Content, Form } from './styles';
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-//import { useAuth } from "../../hooks/auth"
+import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 
 import { Header } from '../../components/Header';
@@ -12,8 +12,7 @@ import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
 import { DishIngredients } from '../../components/DishIngredients';
 export function EditDish() {
-  const userData = localStorage.getItem("@FoodExplorer:user");
-  const { userPermission } = JSON.parse(userData);
+  const { userPermission } = useAuth();
 
   const isAdmin = userPermission.role_id === 1 ? true : false;
 

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useEffect } from "react";
 import { Navigation } from 'swiper/modules';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from "../../hooks/auth"
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import 'swiper/css';
@@ -21,8 +22,8 @@ import { Button } from '../../components/Button';
 
 
 export function Home() {
-  const userData = localStorage.getItem("@FoodExplorer:user");
-  const { userPermission } = JSON.parse(userData);
+  const { userPermission } = useAuth();
+
   const { addToCart } = useCart();
   
   const isAdmin = userPermission.role_id === 1 ? true : false;

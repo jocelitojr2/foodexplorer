@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 
 import { Input } from "../Input"
 export function MenuMobile({ menuIsVisible, setMenuIsVisible, onSearch}) {
-  const { signOut } = useAuth();
-  const userData = localStorage.getItem("@FoodExplorer:user");
-  const { userPermission } = JSON.parse(userData);
+  const { signOut, userPermission } = useAuth();
+  
   const [searchTerm, setSearchTerm] = useState('');
 
   const isAdmin = userPermission.role_id === 1 ? true : false;

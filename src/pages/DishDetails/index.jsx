@@ -3,6 +3,7 @@ import { Container, Content, Details } from './styles';
 import { useCart } from '../../context/CartContext';
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
+import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api";
 
 import { InputNumber } from '../../components/InputNumber';
@@ -12,8 +13,8 @@ import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
 
 export function DishDetails() {
-  const userData = localStorage.getItem("@FoodExplorer:user");
-  const { userPermission } = JSON.parse(userData);
+  const { userPermission } = useAuth();
+
   const { addToCart } = useCart();
   
   const isAdmin = userPermission.role_id === 1 ? true : false;

@@ -11,9 +11,8 @@ import { Input } from "../Input"
 import favIcon from "../../assets/logo.svg"
 
 export function Header({ onSearch }) {
-  const { signOut } = useAuth();
-  const userData = localStorage.getItem("@FoodExplorer:user");
-  const { userPermission } = JSON.parse(userData);
+  const { signOut, userPermission } = useAuth();
+
   const { cartItems } = useCart();
   
   const isAdmin = userPermission.role_id === 1 ? true : false;
