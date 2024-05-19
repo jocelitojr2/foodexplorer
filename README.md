@@ -1,21 +1,55 @@
-# Foodexplorer
-## Dependências Instaladas
 
-* [Styled Components (v6.1.8)](https://styled-components.com/docs/basics#installation)
-* [Axios (v1.6.7)](https://axios-http.com/docs/intro)
-* [React Router Dom (v6.22.3)](https://v5.reactrouter.com/web/guides/quick-start)
-* [React Icons (v5.0.1)](https://react-icons.github.io/react-icons/)
-* [Swiper (v11.0.7)](https://swiperjs.com/get-started)
-## Instalação Necessárias
+# FoodExplorer
 
-Execute o NPM Install
+A aplicação que desenvolveremos é um cardápio digital para um restaurante fictício, conhecido como foodExplorer.
+
+- [Link do deploy no NETLIFY](https://foodexplorer-joc3.netlify.app/)
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/jocelitojr2/foodexplorer
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
 
 ```bash
   npm install
 ```
 
-Inicie o SERVER
+Inicie o servidor
 
 ```bash
   npm run dev
 ```
+
+Contas para utilizar.
+
+```bash
+  Cliente ⬇
+  email: cliente@email.com
+  senha: 123
+
+  Administrador ⬇
+  email: admin@email.com
+  senha: 123
+```
+
+
+
+
+## Dependências do Projeto.
+
+* [Styled Components](https://styled-components.com/docs/basics#installation): Utilizado para escrever estilos CSS dentro dos componentes React.
+* [Axios](https://axios-http.com/docs/intro): Cliente HTTP baseado em Promises para fazer requisições ao servidor.
+* [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start): Biblioteca de roteamento para React que permite a navegação entre diferentes páginas em uma aplicação SPA (Single Page Application).
+* [React Icons](https://react-icons.github.io/react-icons/): Biblioteca de ícones para React, que facilita a inclusão de ícones populares na aplicação.
+* [Swiper](https://swiperjs.com/get-started): Biblioteca para criação de sliders/carousels modernos e responsivos.
+
