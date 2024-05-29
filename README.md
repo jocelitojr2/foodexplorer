@@ -3,6 +3,8 @@
 
 A aplicação que desenvolveremos é um cardápio digital para um restaurante fictício, conhecido como foodExplorer.
 
+- ![Imagem da aplicação](./src/assets/example-aplication.png)
+
 - [Link do deploy no NETLIFY](https://foodexplorer-joc3.netlify.app/)
 ## Rodando localmente
 
